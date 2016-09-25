@@ -19,16 +19,18 @@ class ChatClient
         //Getting it to listen to 239.0.202.1
         s.joinGroup(group);
 
+	//Stores what user types in kerboard
         BufferedReader userInput;
+        String msg;
+
+	//Stores what user is going to send "Hello World"
         DatagramPacket message;
-        DatagramPacket recvmsg;
         byte [] buf;
-        String msg; String responseIP;
-        InetAddress sendersAdd;
 
+	//Starting thread that will listen and print out any messages(from this and other chatclients connected to this multicast 
         MulticastSocketThread Thread = new MulticastSocketThread(s);
-
         Thread.start();
+
         while(true)
         {
             //Getting what user typed in console & Sending it
